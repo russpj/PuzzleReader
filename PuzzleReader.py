@@ -7,9 +7,9 @@
 from bs4 import BeautifulSoup
 
 
-def FindPuzzle():
-	file = open("Special Monthly Nonograms.html", 'r', encoding='utf-8')
-	return file
+def GetHtml(filename):
+	with open(filename, 'r', encoding='utf-8') as file:
+		return file.read()
 
 
 def FindNumbersInDiv(soup, div):
@@ -22,8 +22,7 @@ def FindNumbersInDiv(soup, div):
 		output_groups.append(output_group)
 	return output_groups	
 
-def ParsePuzzle(file):
-	text = file.read()
+def ParsePuzzle(text):
 	soup = BeautifulSoup(text, 'html.parser')
 
 	columns = FindNumbersInDiv(soup, 'taskTop')
@@ -40,7 +39,7 @@ def print_groups(groups):
 			line += ' '
 		print(line)
 
-def write_file(parsed_file):
+def write_file(filename, parsed_file):
 	columns = parsed_file[0]
 	rows = parsed_file[1]
 
@@ -51,9 +50,11 @@ def write_file(parsed_file):
 
 
 def Main():
-	puzzle_file = FindPuzzle()
-	puzzle_definition = ParsePuzzle(puzzle_file)
-	write_file(puzzle_definition)
+	puzzle_name = 'Special Monthly Nonograms'
+
+	puzzle_html = GetHtml('{}.html'.format(puzzle_name))
+	puzzle_definition = ParsePuzzle(puzzle_html)
+	write_file('{}.txt'.format(puzzle_name), puzzle_definition)
 
 
 if __name__ == '__main__':
