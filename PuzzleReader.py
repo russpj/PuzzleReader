@@ -44,10 +44,10 @@ def write_file(filename, parsed_file):
 	rows = parsed_file[1]
 
 	with open(filename, 'w') as out_file:
-		print(len(columns), file=out_file)
 		print(len(rows), file=out_file)
-		print_groups(columns, file=out_file)
+		print(len(columns), file=out_file)
 		print_groups(rows, file=out_file)
+		print_groups(columns, file=out_file)
 
 
 def Main():
