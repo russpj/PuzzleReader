@@ -31,22 +31,23 @@ def ParsePuzzle(text):
 	return (columns, rows)
 
 
-def print_groups(groups):
+def print_groups(groups, file):
 	for group in groups:
 		line = ''
 		for number in group:
 			line += number
 			line += ' '
-		print(line)
+		print(line, file=file)
 
 def write_file(filename, parsed_file):
 	columns = parsed_file[0]
 	rows = parsed_file[1]
 
-	print(len(columns))
-	print(len(rows))
-	print_groups(columns)
-	print_groups(rows)
+	with open(filename, 'w') as out_file:
+		print(len(columns), file=out_file)
+		print(len(rows), file=out_file)
+		print_groups(columns, file=out_file)
+		print_groups(rows, file=out_file)
 
 
 def Main():
