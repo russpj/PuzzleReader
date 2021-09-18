@@ -17,10 +17,9 @@ def FindNumbersInDiv(soup, div):
 	output_groups = []
 	for group in groups.find_all('div', class_='task-group'):
 		output_group = []
-		for cell in group.find_all('div', class_='task-cell selectable cross'):
-			output_group.append(cell.text)
-		for cell in group.find_all('div', class_='task-cell selectable'):
-			output_group.append(cell.text)
+		for cell in group.find_all('div'):
+			if cell.text:
+				output_group.append(cell.text)
 		output_groups.append(output_group)
 	return output_groups	
 
