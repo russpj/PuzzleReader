@@ -340,3 +340,6 @@ ASALocalRun/
 healthchecksdb
 *.html
 *.txt
+/Special Monthly Nonograms_files
+Special Monthly Nonograms.txt
+Special Monthly Nonograms.html
